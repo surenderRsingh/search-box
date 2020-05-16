@@ -8,7 +8,7 @@ const SearchBox = props => {
     const [showList,setShowList] = useState(false);
     const[value,changeValue] = useState('');
     const filteredData = data.filter(ele=>ele.indexOf(value) >=0);
-
+    
     const onTextValueChange = (val) =>{
         changeValue(val);
 
@@ -28,7 +28,7 @@ const SearchBox = props => {
     return (
         <>
             <SearchInputBox onValueChange={onTextValueChange} value={value} />
-            <DropDown showList={showList} items={filteredData} onItemClick={onSelectItem} />
+            <DropDown showList={showList || (filteredData.length === 0)} items={filteredData} onItemClick={onSelectItem} />
 
         </>
     )
