@@ -1,11 +1,13 @@
 import React,{useState} from 'react';
 import SearchInputBox from './SearchInputBox'
-
+import PropTypes from 'prop-types'
 import DropDown from './drop-down';
+
 const SearchBox = props => {
+    const{data,onItemSelected} = props;
     const [showList,setShowList] = useState(false);
     const[value,changeValue] = useState('');
-    const filteredData = props.data.filter(ele=>ele.indexOf(value) >=0);
+    const filteredData = data.filter(ele=>ele.indexOf(value) >=0);
 
     const onTextValueChange = (val) =>{
         changeValue(val);
@@ -20,7 +22,7 @@ const SearchBox = props => {
     const onSelectItem = (item) => {
         changeValue('');
         setShowList(false);
-        console.log(`selected item is ${item}`)
+        onItemSelected(item);
     }   
 
     return (
@@ -30,6 +32,15 @@ const SearchBox = props => {
 
         </>
     )
+}
+
+SearchBox.propTypes = {
+    data:PropTypes.array.isRequired,
+    onItemSelected:PropTypes.func
+}
+
+SearchBox.defaultProps = {
+    data:[]
 }
 
 export default SearchBox;

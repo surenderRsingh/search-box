@@ -18,10 +18,13 @@ const data = [
     "tenth"
 ]
 
+const onItemSelected = item =>{
+    console.log(item);
+}
 const App = () => (
   <React.Fragment>
     <Container>
-      <SearchBox data={data} />
+      <SearchBox data={data} onItemSelected = {onItemSelected} />
 
       {/* <p>
         Mollit occaecat commodo laborum magna sunt nostrud non. Quis do nulla
